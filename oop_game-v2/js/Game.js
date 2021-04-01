@@ -10,7 +10,7 @@ class Game {
 
     constructor() {
         this.missed = 0; 
-        this.phrases = ['Humpty Dumpty', 'Old Mcdonald', 'Baa Baa Black Sheep', 'Twinle Twinkle', 'Itsy Bitsy Spider'];
+        this.phrases = ['Humpty Dumpty', 'Old Mcdonald', 'Baa Baa Black Sheep', 'Twinkle Twinkle', 'Itsy Bitsy Spider'];
         this.activePhrase = null; 
     }
 
@@ -41,6 +41,8 @@ class Game {
      * @returns none 
      */
     handleInteraction(value) {
+        value.disabled = true;
+
         if (this.activePhrase.toLowerCase().includes(value.innerHTML)) {
             phraseObject.showMatchedLetter(value);
             value.classList.add('chosen');
@@ -140,6 +142,7 @@ class Game {
 
         keyboard.forEach(key => {
             key.className = 'key';
+            key.disabled = false;
         })
     }
 }

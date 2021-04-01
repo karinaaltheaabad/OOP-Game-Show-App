@@ -20,6 +20,7 @@ startButton.addEventListener('click', (e) => {
 keyboard.forEach(letter => {
     letter.addEventListener('click', (e) => {
         game.handleInteraction(e.target); 
+        console.log(e.target);
     })
 })
 
