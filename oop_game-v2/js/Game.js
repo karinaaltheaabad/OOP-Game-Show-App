@@ -10,7 +10,7 @@ class Game {
 
     constructor() {
         this.missed = 0; 
-        this.phrases = ['Humpty Dumpty', 'Old Mcdonald', 'Baa Baa Black Sheep', 'Twinkle Twinkle', 'Itsy Bitsy Spider'];
+        this.phrases = [new Phrase('humpty dumpty'), new Phrase('old mcdonald'), new Phrase('baa baa black sheep'), new Phrase('twinkle twinkle'), new Phrase('itsy bitsy spider')];
         this.activePhrase = null; 
     }
 
@@ -21,8 +21,7 @@ class Game {
         startGameOverlay = document.querySelector('#overlay'); 
         startGameOverlay.style.visibility = 'hidden'; 
         this.activePhrase = this.getRandomPhrase(); 
-        phraseObject = new Phrase(this.activePhrase);
-        phraseObject.addPhraseToDisplay(); 
+        this.activePhrase.addPhraseToDisplay(); 
     }
 
     /**
@@ -42,9 +41,10 @@ class Game {
      */
     handleInteraction(value) {
         value.disabled = true;
+        phraseObject = this.activePhrase.phrase;
 
-        if (this.activePhrase.toLowerCase().includes(value.innerHTML)) {
-            phraseObject.showMatchedLetter(value);
+        if (this.activePhrase.phrase.includes(value.innerHTML)) {
+            this.activePhrase.showMatchedLetter(value);
             value.classList.add('chosen');
             if (this.checkForWin()) {
                 this.gameOver();
